@@ -174,8 +174,24 @@
       //    ebook.next() // returns null
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
+  constructor(string,chars) {
+    this.string = string;
+    this.chars = chars;
+    this.page = 0;
+  }
+  next() {
+    let startingPoint = this.page * this.chars;
+    let endPoint = startingPoint + this.chars;
 
+    if (startingPoint >= this.string.length) {
+      return null
     }
+    let nextPage = this.string.slice(startingPoint,endPoint);
+    this.page++
+    return nextPage;
+  }
+}
+  
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
@@ -209,7 +225,7 @@
       //      console.log(list) // prints ["a"]
       // 👉 HINT: if you are not feeling confident with map and filter, solve the problem with for loops,
       //      and with the piece of mind of all tests passing, refactor to use map/filter
-
+        
     }
 
     // 🧪 TESTS, do not make any changes below this line ===================
