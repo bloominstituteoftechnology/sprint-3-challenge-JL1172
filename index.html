@@ -82,15 +82,26 @@
       this.ints = this.args;
       return this.ints.pop(); 
     }
-    push() {
-      this.ints = this.args; //do not understand
-      this.ints[this.ints[2]] = 4
+    push(int) {
+      this.ints = this.args; 
+      this.ints[3] = int
       return this.ints;
     }
     getEveryNth(int) {
       this.ints = this.args;
-      let result = this.ints[this.int] 
-      return result;
+      let result = [];
+      for (let i = 0; i < this.ints.length; i+=int) {
+        result.push(this.ints[i]); 
+      } 
+      return result; 
+    }
+    getAllReversed() {
+      this.ints = this.args
+      let result = [];
+      for (let i = this.ints.length - 1; i >= 0; i--) {
+        result.push(this.ints[i]); 
+      }
+      return result; 
     }
     }
     
@@ -110,7 +121,41 @@
       //      * When engaging the safety, return "Safety enabled!"
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
+        constructor(projectiles) {
+          this.capacity = projectiles; 
+          this.ammo = projectiles;
+          this.safety = true;
+        }
+        shoot() {
+          if (this.ammo > 0 && !this.safety) {
+            this.ammo--;
+            return "Bang!"
+          } else if (this.ammo <= 0 || this.safety) {
+            return "Click!"
+          } 
+        }
+        reload(number) {
+          if (number <= 0 || typeof number !== 'number') {
+          return "Error reloading!"
+          }
+         if (((this.capacity-this.ammo)<number)){
+            this.ammo = this.capacity;
+             return `${this.ammo} projectiles left!`;
+          } else if (((this.capacity-this.ammo)>number)) {
+          this.ammo += number; 
+          return `${number} projectiles left!`;
+        }  
 
+        }
+        toggleSafety() {
+          if (this.safety) {
+            this.safety = false; 
+            return "Safety disabled!";
+          } else {
+            this.safety = true;
+            return "Safety enabled!"
+          }
+        }
     }
 
     // 👉 CHALLENGE 3 EBook
