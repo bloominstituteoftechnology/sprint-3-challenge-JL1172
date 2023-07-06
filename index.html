@@ -228,26 +228,43 @@
       constructor(...args) {
         this.ants = args.map(ant=> ({name:ant, health: 100}))
       }
-      work() {
-      let count = 1;
-      let result;
+//       work() {
+  
+//       let result;
       
-let firstCount = this.ants.length
-let mapped = this.ants.map((ant)=> {
-  ant.health -= 20;
-  count++
-    if (ant.health <= 0) {
-      let index = this.ants.indexOf(ant)
-        this.ants.splice(ant[index],1)
-        this.ants.splice(ant[index],2)
-    } 
-});
-if (firstCount <= 0) {
-return "No ants here. Did you work them to death?";
-}
-return `${firstCount} ants starting work!`;
+// let firstCount = this.ants.length
+// let mapped = this.ants.map((ant)=> {
+//   ant.health -= 20;
+//     if (ant.health <= 0) {
+//       let index = this.ants.indexOf(ant)
+//         this.ants.splice(ant[index],1)
+//         this.ants.splice(ant[index],2)
+//     } 
+// });
+// let count = 0; 
+// for (let i = 0; i < this.ants.length;i++) {
+//   if (this.ants[i].health > 0) {
+//     count++
+//   } else {
+//   return 'No ants here. Did you work them to death?'
+//   }
+// }
+// }
+work() {
+    if (this.ants.length === 0) {
+      return "No ants here. Did you work them to death?";
+    }
 
-}
+    this.ants.forEach(ant => {
+      ant.health -= 20;
+      if (ant.health <= 0) {
+         this.ants = this.ants.filter(a => a !== ant);
+      }
+      return ant;
+    });
+   let result = this.ants.length === 0 ? this.ants.length + 1 : this.ants.length * 3;
+    return `${result} ants starting work!`; 
+  }
 
 feed(antName) {
   let string = ''; 
