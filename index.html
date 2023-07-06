@@ -262,8 +262,7 @@ work() {
       }
       return ant;
     });
-   let result = this.ants.length === 0 ? this.ants.length + 1 : this.ants.length * 3;
-    return `${result} ants starting work!`; 
+  return `${this.ants.length+1} ants starting work!`
   }
 
 feed(antName) {
@@ -513,7 +512,7 @@ output.forEach(ant=> {
         },
         function () {
           let actual, description = 'Working returns the correct string'
-          let expected = ["3 ants starting work!", "1 ants starting work!", "No ants here. Did you work them to death?"]
+          let expected = ["2 ants starting work!","1 ants starting work!","No ants here. Did you work them to death?"]
           try {
             const farm = new AntFarm('Jess', 'Blake', 'Jess')
             farm.ants[0].health++
